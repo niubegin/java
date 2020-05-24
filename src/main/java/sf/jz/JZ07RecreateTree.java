@@ -1,14 +1,17 @@
 package sf.jz;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
+@Slf4j
 public class JZ07RecreateTree {
     public static void main(String[] args) {
         int[] first = {1, 2, 4, 7, 3, 5, 6, 8};
         int[] middle = {4, 7, 2, 1, 5, 3, 8, 6};
         JZ07RecreateTree jz07RecreateTree = new JZ07RecreateTree();
         Node head = jz07RecreateTree.recreateTree(first, middle, 0, first.length - 1, 0, middle.length - 1);
+        log.info("{}", head);
     }
 
     @Data
