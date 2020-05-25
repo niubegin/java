@@ -73,7 +73,6 @@ public class JZ08NextNodeInTree {
         }
         //没有父节点
         if (Objects.isNull(treeNode.getParent())) {
-
             //右子树为空
             if (Objects.isNull(treeNode.getLeft())) {
                 return null;
@@ -88,7 +87,7 @@ public class JZ08NextNodeInTree {
                 //父节点就是下一个节点
                 return treeNode.getParent();
             } else {
-                //是父节点的右子树，找到右子树的第一个节点
+                //是父节点的右子树，找到父节点的父节点
                 return null;
             }
         }

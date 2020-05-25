@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +25,19 @@ public class LambdaTest {
 
         private String name;
         private String city;
+        private Integer age;
 
         public Trader(String name, String city) {
             this.name = name;
             this.city = city;
         }
+
+        public Trader(String name, String city, Integer age) {
+            this.name = name;
+            this.city = city;
+            this.age = age;
+        }
+
         //任务执行计数器
         private AtomicInteger excutingCounter = new AtomicInteger(0);
     }
@@ -47,7 +59,57 @@ public class LambdaTest {
     public static void main(String[] args) {
         //test0();
 //        test();
-        testFilter();
+//        testFilter();
+        testSort();
+    }
+
+    /**
+     * 验证：多属性排序，及排序后再过滤后仍然是有序的
+     */
+    private static void testSort() {
+        List<Trader> traders = new ArrayList<>();
+        traders.add(new Trader("1", "a", 21));
+        traders.add(new Trader("3", "b", 30));
+        traders.add(new Trader("3", "a", 28));
+        traders.add(new Trader("2", "b", 40));
+        traders.add(new Trader("3", "b", 26));
+        List<Trader> traders1 = traders.stream()
+            .sorted(Comparator.comparing(Trader::getName).thenComparing(Trader::getCity))
+            .collect(toList());
+        log.info("{}", traders1);
+        List<Trader> traders2 = traders1.stream().filter(t -> "3".equals(t.getName()))
+            .collect(toList());
+        log.info("{}", traders2);
+
+        Map<String, Map<String, Integer>> traderMap = traders1.stream().
+            collect(Collectors.groupingBy(Trader::getName,
+                Collectors.groupingBy(Trader::getCity,
+                    Collectors.summingInt(Trader::getAge))));
+        log.info("{}", traderMap);
+
+        Map<String, List<Trader>> listMap2 = traders.stream()
+            .collect(Collectors.groupingBy(Trader::getName));
+        for (Map.Entry<String, List<Trader>> entry : listMap2.entrySet()) {
+            log.info("----hashMap------" + entry.getKey());
+        }
+        Map<String, List<Trader>> listMap = traders.stream()
+            .collect(Collectors.groupingBy(Trader::getName, LinkedHashMap::new, Collectors.toList()));
+        for (Map.Entry<String, List<Trader>> entry : listMap.entrySet()) {
+            log.info("======LinkedHashMap======" + entry.getKey());
+        }
+        Map<String, List<Trader>> listMap1 = traders.stream()
+            .collect(Collectors.groupingBy(Trader::getName, TreeMap::new, Collectors.toList()));
+        for (Map.Entry<String, List<Trader>> entry : listMap1.entrySet()) {
+            log.info("------TreeMap-----" + entry.getKey());
+        }
+        Map<String, Map<String, Integer>> listMap3 = traders.stream()
+            .collect(Collectors.groupingBy(Trader::getName, TreeMap::new,
+                Collectors.groupingBy(Trader::getCity, TreeMap::new, Collectors.summingInt(Trader::getAge))));
+        for (Map.Entry<String, Map<String, Integer>> entry : listMap3.entrySet()) {
+            for (Map.Entry<String, Integer> entry1 : entry.getValue().entrySet()) {
+                log.info("------TreeMap-----{}--{}---{}", entry.getKey(), entry1.getKey(), entry1.getValue());
+            }
+        }
     }
 
     private static void testFilter() {
