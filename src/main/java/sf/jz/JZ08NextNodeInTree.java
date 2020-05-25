@@ -1,6 +1,7 @@
 package sf.jz;
 
 import java.util.Objects;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -12,6 +13,10 @@ public class JZ08NextNodeInTree {
         log.info("{}", head);
         TreeNode node = jz08NextNodeInTree.findNode(head, 'c');
         log.info("{}", node);
+        char[] nodeValues = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+        for (char nodeValue : nodeValues) {
+            log.info("{}->{}", nodeValue, jz08NextNodeInTree.findNext(head, nodeValue));
+        }
     }
 
     /**
@@ -64,6 +69,10 @@ public class JZ08NextNodeInTree {
         return null;
     }
 
+    private TreeNode findNext(TreeNode head, char treeNodeValue) {
+        return findNext(findNode(head, treeNodeValue));
+    }
+
     /**
      * 查找中序遍历的下一个节点
      */
@@ -73,24 +82,51 @@ public class JZ08NextNodeInTree {
         }
         //没有父节点
         if (Objects.isNull(treeNode.getParent())) {
+            //与有无左子树无关
             //右子树为空
-            if (Objects.isNull(treeNode.getLeft())) {
+            if (Objects.isNull(treeNode.getRight())) {
                 return null;
             } else {
                 //找到右子树的第一个节点
-                return null;
+                TreeNode node = treeNode.getRight();
+                while (Objects.nonNull(node.getLeft())) {
+                    node = node.getLeft();
+                }
+                return node;
             }
         } else {
             //有父节点
-            //是父节点的左子树，
+            //是父节点的左子树
             if (treeNode.getParent().getLeft() == treeNode) {
-                //父节点就是下一个节点
-                return treeNode.getParent();
+                if (Objects.nonNull(treeNode.getRight())) {
+                    //有右子树，找第一个节点，同上
+                    TreeNode node = treeNode.getRight();
+                    while (Objects.nonNull(node.getLeft())) {
+                        node = node.getLeft();
+                    }
+                    return node;
+                } else {
+                    //没右子树，返回父节点
+                    return treeNode.getParent();
+                }
             } else {
-                //是父节点的右子树，找到父节点的父节点
-                return null;
+                //是父节点的右子树
+                //没有右孩子
+                if (Objects.isNull(treeNode.getRight())) {
+                    //在上代节点中找到某个节点是父节点的左孩子，则父节点是下一个
+                    TreeNode node = treeNode;
+                    //存在父节点
+                    while (Objects.nonNull(node.getParent())
+                            //不是父节点的左孩子，则继续向上代找
+                            && node != node.getParent().getLeft()) {
+                        node = node.getParent();
+                    }
+                    return node.getParent();
+                } else {
+                    //有右孩子，返回右孩子
+                    return treeNode.getRight();
+                }
             }
         }
     }
-
 }
