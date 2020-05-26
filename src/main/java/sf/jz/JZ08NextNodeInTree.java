@@ -17,6 +17,9 @@ public class JZ08NextNodeInTree {
         for (char nodeValue : nodeValues) {
             log.info("{}->{}", nodeValue, jz08NextNodeInTree.findNext(head, nodeValue));
         }
+        for (char nodeValue : nodeValues) {
+            log.info("优化：{}->{}", nodeValue, jz08NextNodeInTree.findNext2(head, nodeValue));
+        }
     }
 
     /**
@@ -73,8 +76,12 @@ public class JZ08NextNodeInTree {
         return findNext(findNode(head, treeNodeValue));
     }
 
+    private TreeNode findNext2(TreeNode head, char treeNodeValue) {
+        return findNext2(findNode(head, treeNodeValue));
+    }
+
     /**
-     * 查找中序遍历的下一个节点
+     * 查找中序遍历的下一个节点，自己的思路，比较繁琐
      */
     private TreeNode findNext(TreeNode treeNode) {
         if (Objects.isNull(treeNode)) {
@@ -117,8 +124,8 @@ public class JZ08NextNodeInTree {
                     TreeNode node = treeNode;
                     //存在父节点
                     while (Objects.nonNull(node.getParent())
-                            //不是父节点的左孩子，则继续向上代找
-                            && node != node.getParent().getLeft()) {
+                        //不是父节点的左孩子，则继续向上代找
+                        && node != node.getParent().getLeft()) {
                         node = node.getParent();
                     }
                     return node.getParent();
@@ -127,6 +134,31 @@ public class JZ08NextNodeInTree {
                     return treeNode.getRight();
                 }
             }
+        }
+    }
+
+    /**
+     * 改进版：分两种情况， 1.有右孩子，则找右子树的第一个节点 2.无右孩子，则找父辈节点中有左孩子的第一个节点
+     */
+    private TreeNode findNext2(TreeNode treeNode) {
+        if (Objects.isNull(treeNode)) {
+            return null;
+        }
+        if (Objects.nonNull(treeNode.getRight())) {
+            TreeNode node = treeNode.getRight();
+            //有左孩子，则不断找左孩子
+            while (Objects.nonNull(node.getLeft())) {
+                node = node.getLeft();
+            }
+            //没有左孩子则返回自己
+            return node;
+        } else {
+            TreeNode node = treeNode;
+            //有父节点，且不是父节点的左孩子，则继续向上找
+            while (Objects.nonNull(node.getParent()) && node.getParent().getLeft() != node) {
+                node = node.getParent();
+            }
+            return node.getParent();
         }
     }
 }
