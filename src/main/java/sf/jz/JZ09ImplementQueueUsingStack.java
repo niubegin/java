@@ -4,19 +4,19 @@ import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class JZ09ImplementQueneUsingStack {
+public class JZ09ImplementQueueUsingStack {
 
     private Stack<Integer> inStack = new Stack<>();
     private Stack<Integer> tmpStack = new Stack<>();
 
     public static void main(String[] args) {
-        JZ09ImplementQueneUsingStack jz09ImplementQueneUsingStack = new JZ09ImplementQueneUsingStack();
-        jz09ImplementQueneUsingStack.appendTail(Integer.valueOf(1));
-        jz09ImplementQueneUsingStack.appendTail(Integer.valueOf(2));
-        jz09ImplementQueneUsingStack.appendTail(Integer.valueOf(3));
-        log.info("{}", jz09ImplementQueneUsingStack.inStack);
-        log.info("{}", jz09ImplementQueneUsingStack.deleteHead());
-        log.info("{}", jz09ImplementQueneUsingStack.inStack);
+        JZ09ImplementQueueUsingStack jz09ImplementQueueUsingStack = new JZ09ImplementQueueUsingStack();
+        jz09ImplementQueueUsingStack.appendTail(Integer.valueOf(1));
+        jz09ImplementQueueUsingStack.appendTail(Integer.valueOf(2));
+        jz09ImplementQueueUsingStack.appendTail(Integer.valueOf(3));
+        log.info("{}", jz09ImplementQueueUsingStack.inStack);
+        log.info("{}", jz09ImplementQueueUsingStack.deleteHead());
+        log.info("{}", jz09ImplementQueueUsingStack.inStack);
     }
 
     private void appendTail(Integer value) {
