@@ -1,6 +1,6 @@
 package sf.jz;
 
-public class Fibonacci {
+public class JZ10Fibonacci {
     public static void main(String[] args) {
         System.out.println(fn(39));
     }
