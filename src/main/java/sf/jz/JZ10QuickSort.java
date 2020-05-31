@@ -58,6 +58,18 @@ public class JZ10QuickSort {
             return;
         }
 
+        int small = partition(arr, low, high);
+        //递归排序pivot前节点
+        quickSort(arr, low, small - 1);
+        //递归排序pivot后节点
+        quickSort(arr, small + 1, high);
+    }
+
+    /**
+     * 交互并拆分：还可以用于实现第k大的数
+     * @return pivot的最新位置
+     */
+    private static int partition(int[] arr, int low, int high) {
         //small指向比pivot节点小的最后一个节点，最开始比pivot小的节点是0个
         int small = low;
         //从第二个遍历到最后一个元素
@@ -71,10 +83,7 @@ public class JZ10QuickSort {
 
         //把pivot换到合适的位置
         swap(arr, low, small);
-        //递归排序pivot前节点
-        quickSort(arr, low, small - 1);
-        //递归排序pivot后节点
-        quickSort(arr, small + 1, high);
+        return small;
     }
 
     /**
