@@ -9,9 +9,11 @@ public class JZ11FindMinInRotateArray {
         int[] arr = {5, 6, 0, 1, 2, 3, 4};
         int[] arr1 = {1, 0, 1, 1, 1};
         int[] arr2 = {1, 1, 1, 0, 1};
+        int[] arr3 = {1, 1, 0, 1, 1};
         log.info("{}", find(arr, 0, arr.length - 1));
-        //log.info("{}", find(arr1, 0, arr1.length - 1));
-        //log.info("{}", find(arr2, 0, arr2.length - 1));
+        log.info("{}", find(arr1, 0, arr1.length - 1));
+        log.info("{}", find(arr2, 0, arr2.length - 1));
+        log.info("{}", find(arr3, 0, arr3.length - 1));
     }
 
     /**
@@ -23,6 +25,16 @@ public class JZ11FindMinInRotateArray {
         }
 
         int mid = low + (high - low) / 2;
+        //无法判断中间数字是前半部分还是后半部分，使用遍历的方法
+        if (arr[low] == arr[high] && arr[low] == arr[mid]) {
+            int min = arr[low];
+            for (int index = low; index <= high; index++) {
+                if (arr[index] < min) {
+                    min = arr[index];
+                }
+            }
+            return min;
+        }
         //如果大于第一个元素，因为是递增的，说明最小的在右侧
         if (arr[mid] > arr[0]) {
             return find(arr, mid + 1, high);
