@@ -50,7 +50,7 @@ public class JZ10QuickSort {
 
     /**
      * 顺序遍历法 https://segmentfault.com/a/1190000004410119、 用两个指针，small始终指向小于pivot的最后一个节点，初始时指向pivot节点；
-     * 另外一个指针依次遍历数组（同样可以遍历链表）； 如果当前节点小于pivot，则将small指针+1，然后交互当前节点和small指向的节点（肯定是大于pivot的节点）；
+     * 另外一个指针依次遍历数组（同样可以遍历链表）； 如果当前节点小于pivot，则将small指针+1，然后交换当前节点和small指向的节点（肯定是大于pivot的节点）；
      */
     private static void quickSort(int[] arr, int low, int high) {
         //结束递归的条件
