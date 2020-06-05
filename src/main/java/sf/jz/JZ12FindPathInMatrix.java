@@ -65,12 +65,12 @@ public class JZ12FindPathInMatrix {
 
     /**
      * 在矩阵中递归查找target的一个节点
+     *
      * @param martix 矩阵
      * @param target 要查找的路径
      * @param path 现有查找到的节点路径
      * @param i 坐标x
      * @param j 坐标y
-     * @return
      */
     private boolean findInPosition(char[][] martix, char[] target, Path path, int i, int j) {
         Node preNode = path.getLast();
@@ -94,20 +94,18 @@ public class JZ12FindPathInMatrix {
             path.getNodes().add(node);
             path.setSize(path.getSize() + 1);
             //在上面查找
-            if (!findInPosition(martix, target, path, i - 1, j)) {
+            boolean find = findInPosition(martix, target, path, i - 1, j) ||
                 //在右边查找
-                if (!findInPosition(martix, target, path, i, j + 1)) {
-                    //在下边查找
-                    if (!findInPosition(martix, target, path, i + 1, j)) {
-                        //在左边查找
-                        if (!findInPosition(martix, target, path, i, j - 1)) {
-                            //都没找到，则删除本节点
-                            path.setSize(path.getSize() - 1);
-                            path.getNodes().remove(path.getSize());
-                            return false;
-                        }
-                    }
-                }
+                findInPosition(martix, target, path, i, j + 1) ||
+                //在下边查找
+                findInPosition(martix, target, path, i + 1, j) ||
+                //在左边查找
+                findInPosition(martix, target, path, i, j - 1);
+            if (!find) {
+                //都没找到，则删除本节点
+                path.setSize(path.getSize() - 1);
+                path.getNodes().remove(path.getSize());
+                return false;
             }
         }
         return false;
