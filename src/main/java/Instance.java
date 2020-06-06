@@ -1,4 +1,8 @@
 public class Instance {
+
+    /**
+     * 私有化构造方法
+     */
     private Instance(){}
 
     /**
