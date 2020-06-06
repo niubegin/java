@@ -1,3 +1,5 @@
+package test;
+
 public class StaticTest {
     //内部类的静态属性
     class OuterClass {

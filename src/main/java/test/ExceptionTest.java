@@ -1,3 +1,5 @@
+package test;
+
 import javassist.CannotCompileException;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -87,12 +89,12 @@ public class ExceptionTest {
 
                 /**
                  * 开始的输出
-                 * 18:42:34.228 [main] ERROR ExceptionTest - e:
+                 * 18:42:34.228 [main] ERROR test.ExceptionTest - e:
                  * java.lang.NullPointerException: null
-                 * 	at ExceptionTest.callManyNPEInLoop(ExceptionTest.java:30) [classes/:?]
-                 * 	at ExceptionTest.main(ExceptionTest.java:24) [classes/:?]
+                 * 	at test.ExceptionTest.callManyNPEInLoop(test.ExceptionTest.java:30) [classes/:?]
+                 * 	at test.ExceptionTest.main(test.ExceptionTest.java:24) [classes/:?]
                  * 	次数多了后
-                 * 	18:43:11.355 [main] ERROR ExceptionTest - e:
+                 * 	18:43:11.355 [main] ERROR test.ExceptionTest - e:
                  * java.lang.NullPointerException: null
                  */
             }

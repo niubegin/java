@@ -1,13 +1,10 @@
 package sf.jz;
 
-import com.sun.org.apache.xerces.internal.dom.PSVIAttrNSImpl;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-
-import javax.transaction.TransactionRequiredException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JZ12FindPathInMatrix {
