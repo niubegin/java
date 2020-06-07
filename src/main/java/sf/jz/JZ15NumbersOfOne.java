@@ -16,6 +16,10 @@ public class JZ15NumbersOfOne {
         count3(9);
         count2(-1);
         count3(-1);
+        count2(0xFFFFFFFF);
+        count3(0xFFFFFFFF);
+        count2(0x80000000);
+        count3(0x80000000);
         check2power(9);
         check2power(8);
         countChangeNumber(8, 9);
