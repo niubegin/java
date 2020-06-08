@@ -16,6 +16,9 @@ public class JZ17PrintNBitsNumber {
      * 递归打印，枚举各位数字，代码简练
      */
     private static void setAndPrint(byte[] number, int n) {
+        if (n < 1) {
+            return;
+        }
         for (byte i = 0; i <= 9; i++) {
             //设置第n位
             number[n - 1] = i;
