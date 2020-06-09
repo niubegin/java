@@ -2,11 +2,11 @@ package sf.jz;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 @Slf4j
 public class JZ18DeleteDuplicateNodeInLinkedList {
+
     public static void main(String[] args) {
         LinkedListNode head = null;
         LinkedListNode tail = null;
@@ -39,18 +39,14 @@ public class JZ18DeleteDuplicateNodeInLinkedList {
         tail.setNext(tmp);
         tail = tmp;
         log.info("{}", head);
-        deteteDup(head, tail);
+        deleteDup(head, tail);
         log.info("{}", head);
     }
 
     /**
-     * 删除重复的元素
-     * 1.快速排序
-     * 2.遍历删除重复
-     *
-     * @param head
+     * 删除重复的元素 1.快速排序 2.遍历删除重复
      */
-    private static void deteteDup(LinkedListNode head, LinkedListNode tail) {
+    private static void deleteDup(LinkedListNode head, LinkedListNode tail) {
         if (Objects.isNull(head) || Objects.isNull(tail)) {
             return;
         }
@@ -63,13 +59,12 @@ public class JZ18DeleteDuplicateNodeInLinkedList {
                 //删除下一个节点
                 cur.setNext(cur.getNext().getNext());
             }
+            cur = cur.getNext();
         }
     }
 
     /**
      * 快速排序
-     *
-     * @param head
      */
     private static void quickSort(LinkedListNode head, LinkedListNode tail) {
         if (head == tail) {
