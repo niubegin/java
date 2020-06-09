@@ -13,10 +13,12 @@ import java.nio.charset.Charset;
 import java.util.Iterator;
 
 public class ClientDemo {
+
     public static void main(String[] args) throws Exception {
         ClientDemo clientDemo = new ClientDemo();
         clientDemo.init();
     }
+
     private final ByteBuffer sendBuffer = ByteBuffer.allocate(1024);
     private final ByteBuffer receiveBuffer = ByteBuffer.allocate(1024);
     private Selector selector;

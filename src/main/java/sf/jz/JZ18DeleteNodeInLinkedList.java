@@ -1,11 +1,11 @@
 package sf.jz;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JZ18DeleteNodeInLinkedList {
+
     public static void main(String[] args) {
         LinkedListNode head = null;
         LinkedListNode tail = null;
@@ -43,11 +43,7 @@ public class JZ18DeleteNodeInLinkedList {
     }
 
     /**
-     * 通过拷贝下一个节点的值实现删除；
-     * 特殊情况是头和尾节点的删除；
-     *
-     * @param head
-     * @param node
+     * 通过拷贝下一个节点的值实现删除； 特殊情况是头和尾节点的删除；
      */
     private static LinkedListNode deleteNode(LinkedListNode head, LinkedListNode node) {
         if (Objects.isNull(node)) {

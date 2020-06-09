@@ -1,7 +1,5 @@
 package sf.jz;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
@@ -67,6 +65,7 @@ public class JZ10QuickSort {
 
     /**
      * 交互并拆分：还可以用于实现第k大的数
+     *
      * @return pivot的最新位置
      */
     private static int partition(int[] arr, int low, int high) {

@@ -12,10 +12,9 @@ import java.nio.charset.Charset;
 import java.util.Iterator;
 
 public class ServerDemo {
+
     /**
      * 与ClientDemo一起使用，分别启动
-     * @param args
-     * @throws Exception
      */
     public static void main(String[] args) throws Exception {
         ServerDemo serverDemo = new ServerDemo();
@@ -60,7 +59,6 @@ public class ServerDemo {
                     // 注意！这里和阻塞io的区别非常大，在编码层面之前的等待输入已经变成了注册事件，这样我们就可以在等待的时候做别的事情，
                     // 比如监听更多的socket连接，也就是之前说了一个线程监听多个socket连接。这也是在编码的时候最直观的感受
                     socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-
 
                     ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
                     buffer.put("hi new channel".getBytes());

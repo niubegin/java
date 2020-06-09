@@ -1,13 +1,18 @@
 package test;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 多线程交替打印ABC的多种实现方法
- * https://blog.csdn.net/xiaokang123456kao/article/details/77331878
+ * 多线程交替打印ABC的多种实现方法 https://blog.csdn.net/xiaokang123456kao/article/details/77331878
  */
 public class PrintABC {
 
@@ -41,10 +46,10 @@ public class PrintABC {
      * 使用synchronized实现
      */
     /**
-     * 经博友：璐璐的宝宝的指点，原程序虽然也能完成任务，但是存在一个很大的缺陷。为了对比一下，这里保留原实现，并给出新的改进实现。
-     * 原实现：
+     * 经博友：璐璐的宝宝的指点，原程序虽然也能完成任务，但是存在一个很大的缺陷。为了对比一下，这里保留原实现，并给出新的改进实现。 原实现：
      */
     public static class ThreadPrinter implements Runnable {
+
         private String name;
         private Object prev;
         private Object self;
@@ -100,6 +105,7 @@ public class PrintABC {
      * 使用synchronized实现
      */
     public static class ThreadPrinter02 implements Runnable {
+
         private String name;
         private Object prev;
         private Object self;
@@ -170,6 +176,7 @@ public class PrintABC {
     private static int state = 0;//通过state的值来确定是否打印
 
     static class ThreadA extends Thread {
+
         @Override
         public void run() {
             for (int i = 0; i < 10; ) {
@@ -188,6 +195,7 @@ public class PrintABC {
     }
 
     static class ThreadB extends Thread {
+
         @Override
         public void run() {
             for (int i = 0; i < 10; ) {
@@ -206,6 +214,7 @@ public class PrintABC {
     }
 
     static class ThreadC extends Thread {
+
         @Override
         public void run() {
             for (int i = 0; i < 10; ) {
@@ -250,6 +259,7 @@ public class PrintABC {
     private static int count = 0;
 
     static class ThreadA4 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -271,6 +281,7 @@ public class PrintABC {
     }
 
     static class ThreadB4 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -292,6 +303,7 @@ public class PrintABC {
     }
 
     static class ThreadC4 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -338,6 +350,7 @@ public class PrintABC {
     private static Semaphore SC = new Semaphore(0);
 
     static class ThreadA05 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -353,6 +366,7 @@ public class PrintABC {
     }
 
     static class ThreadB05 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -368,6 +382,7 @@ public class PrintABC {
     }
 
     static class ThreadC05 extends Thread {
+
         @Override
         public void run() {
             try {
@@ -402,7 +417,8 @@ public class PrintABC {
         Semaphore sa = new Semaphore(1);
         Semaphore sb = new Semaphore(0);
         Semaphore sc = new Semaphore(0);
-        ExecutorService executorService = new ThreadPoolExecutor(3, 3, 10, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(3));
+        ExecutorService executorService = new ThreadPoolExecutor(3, 3, 10, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<Runnable>(3));
         executorService.submit(() -> {
             for (int i = 0; i < 10; i++) {
                 try {

@@ -1,7 +1,6 @@
 package sf.jz;
 
 import lombok.extern.slf4j.Slf4j;
-import org.omg.CORBA.CurrentOperations;
 
 @Slf4j
 public class JZ15NumbersOfOne {

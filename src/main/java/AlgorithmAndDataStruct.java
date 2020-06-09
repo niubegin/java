@@ -1,6 +1,5 @@
-import org.junit.Test;
-
 import java.util.Arrays;
+import org.junit.Test;
 
 public class AlgorithmAndDataStruct {
     /**
@@ -13,18 +12,9 @@ public class AlgorithmAndDataStruct {
      * 数组
      */
     /**
-     * ▌1.给定一个 1-100 的整数数组，请找到其中缺少的数字。
-     * 思路1：
-     * a.从小到大排序
-     * b.查找缺少的数字：两个指针A和B，A指向1-100的外层for循环，B指向数组当前下标
-     * 》如果A==B，则A++，B++：获取下一个不同的值，避免重复值
-     * 》如果A<B，则输出A，A++
-     * 思路2：
-     * a.从小到大排序
-     * b.遍历整数数组：
-     * 》下标==0时，输出1至当前下标值的整数；
-     * 》下标>0时，输出上一个值到当前值的整数；
-     * 》下标==最后时，输出当前值到100的整数；
+     * ▌1.给定一个 1-100 的整数数组，请找到其中缺少的数字。 思路1： a.从小到大排序 b.查找缺少的数字：两个指针A和B，A指向1-100的外层for循环，B指向数组当前下标
+     * 》如果A==B，则A++，B++：获取下一个不同的值，避免重复值 》如果A<B，则输出A，A++ 思路2： a.从小到大排序 b.遍历整数数组： 》下标==0时，输出1至当前下标值的整数；
+     * 》下标>0时，输出上一个值到当前值的整数； 》下标==最后时，输出当前值到100的整数；
      */
     @Test
     public void a10() {
@@ -59,7 +49,7 @@ public class AlgorithmAndDataStruct {
             if (0 == b) {
                 //第一个元素
                 outInt(0, data[b]);
-            } else{
+            } else {
                 //第二至最后的元素
                 outInt(data[b - 1], data[b]);
             }

@@ -23,12 +23,14 @@ public class JZ06ReversePrintLinkList {
     @Data
     @Builder
     private static class Node {
+
         private int value;
         private Node next;
     }
 
     @Data
     private static class LinkList {
+
         private Node head = null;
         private Node tail = null;
 
@@ -44,10 +46,8 @@ public class JZ06ReversePrintLinkList {
 
         /**
          * 反转返回新的头节点，其实就是原来的尾节点
-         * @param head
-         * @return
          */
-        public Node reverse(Node head){
+        public Node reverse(Node head) {
             Node currentNode = head;
             Node preNode = null;
             while (Objects.nonNull(currentNode)) {
@@ -91,14 +91,11 @@ public class JZ06ReversePrintLinkList {
         }
 
         /**
-         * 反转后打印，然后恢复
-         * 1->2->3
-         * 1<-2<-3
-         * @param head
+         * 反转后打印，然后恢复 1->2->3 1<-2<-3
          */
         public void reversePrintReverseAndRecover(Node head) {
             Node newHead = reverse(head);
-            while (Objects.nonNull(newHead)){
+            while (Objects.nonNull(newHead)) {
                 log.info("{}", newHead.getValue());
                 newHead = newHead.getNext();
             }

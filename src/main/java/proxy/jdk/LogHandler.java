@@ -1,10 +1,11 @@
 package proxy.jdk;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
- * JDK动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。
- * 动态代理类只能代理接口（不支持抽象类），代理类都需要实现InvocationHandler类，实现invoke方法。
+ * JDK动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。 动态代理类只能代理接口（不支持抽象类），代理类都需要实现InvocationHandler类，实现invoke方法。
  * 该invoke方法就是调用被代理接口的所有方法时需要调用的，该invoke方法返回的值是被代理接口的一个实现类
  */
 
@@ -24,12 +25,11 @@ public class LogHandler implements InvocationHandler {
         //第三个参数表明这些被拦截的方法在被拦截时需要执行哪个InvocationHandler的invoke方法
         //根据传入的目标返回一个代理对象
         return Proxy.newProxyInstance(targetObject.getClass().getClassLoader(),
-                targetObject.getClass().getInterfaces(), this);
+            targetObject.getClass().getInterfaces(), this);
     }
 
     /**
-     * 关联的这个实现类的方法被调用时将被执行
-     * InvocationHandler接口的方法，proxy表示代理，method表示原对象被调用的方法，args表示方法的参数
+     * 关联的这个实现类的方法被调用时将被执行 InvocationHandler接口的方法，proxy表示代理，method表示原对象被调用的方法，args表示方法的参数
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

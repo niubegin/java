@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class VolatitleTest {
+
     static volatile int count = 0;
     static int count2 = 0;
     static AtomicInteger atomicInteger = new AtomicInteger(0);

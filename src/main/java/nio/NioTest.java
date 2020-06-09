@@ -13,15 +13,15 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class NioTest {
 
     /**
      * 参考 https://www.jianshu.com/p/02e16989f3a4
-     *
-     * @param args
-     * @throws Exception
      */
     public static void main(String[] args) throws Exception {
         executorStarter();
@@ -30,8 +30,8 @@ public class NioTest {
 
     private static void executorStarter() {
         ExecutorService executorService = //Executors.newFixedThreadPool(2);
-                new ThreadPoolExecutor(2, 2, 0L, TimeUnit.SECONDS,
-                        new LinkedBlockingQueue<>(2));
+            new ThreadPoolExecutor(2, 2, 0L, TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(2));
         executorService.execute(() -> {
             NioTest nioTest = new NioTest();
             try {
@@ -83,6 +83,7 @@ public class NioTest {
     }
 
     public class ServerDemo {
+
         private ByteBuffer readBuffer = ByteBuffer.allocateDirect(1024);
         private ByteBuffer writeBuffer = ByteBuffer.allocateDirect(1024);
         private Selector selector;
@@ -121,7 +122,6 @@ public class NioTest {
                         // 注意！这里和阻塞io的区别非常大，在编码层面之前的等待输入已经变成了注册事件，这样我们就可以在等待的时候做别的事情，
                         // 比如监听更多的socket连接，也就是之前说了一个线程监听多个socket连接。这也是在编码的时候最直观的感受
                         socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-
 
                         ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
                         buffer.put("hi new channel".getBytes());

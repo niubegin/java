@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JZ04FindInArray {
+
     public static void main(String[] args) {
         int[][] array = {{1, 2, 3, 4}, {6, 7, 8, 9}, {11, 12, 13, 14}};
         log.info("{}", find(10, array));
@@ -13,13 +14,7 @@ public class JZ04FindInArray {
     }
 
     /**
-     * 比如从下面的数组找5
-     * 1234
-     * 6789
-     *
-     * @param target
-     * @param array
-     * @return
+     * 比如从下面的数组找5 1234 6789
      */
     private static boolean find(int target, int[][] array) {
         int rows = array.length;

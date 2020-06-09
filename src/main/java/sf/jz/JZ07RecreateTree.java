@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Slf4j
 public class JZ07RecreateTree {
+
     public static void main(String[] args) {
         int[] first = {1, 2, 4, 7, 3, 5, 6, 8};
         int[] middle = {4, 7, 2, 1, 5, 3, 8, 6};
@@ -16,6 +17,7 @@ public class JZ07RecreateTree {
 
     @Data
     private class Node {
+
         private int value;
         private Node left;
         private Node right;
@@ -39,13 +41,15 @@ public class JZ07RecreateTree {
         if (findMiddle == middleStart) {
             head.left = null;
         } else {
-            head.left = recreateTree(first, middle, firstStart + 1, firstStart + findMiddle - middleStart, middleStart, findMiddle - 1);
+            head.left = recreateTree(first, middle, firstStart + 1, firstStart + findMiddle - middleStart, middleStart,
+                findMiddle - 1);
         }
         //没有右子树
         if (findMiddle == middleEnd) {
             head.right = null;
         } else {
-            head.right = recreateTree(first, middle, firstStart + findMiddle - middleStart + 1, firstEnd, findMiddle + 1, middleEnd);
+            head.right = recreateTree(first, middle, firstStart + findMiddle - middleStart + 1, firstEnd,
+                findMiddle + 1, middleEnd);
         }
         return head;
     }

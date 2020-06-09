@@ -1,6 +1,7 @@
 package proxy.user;
 
 public interface UserManager {
+
     void addUser(String userId, String userName);
 
     void delUser(String userId);

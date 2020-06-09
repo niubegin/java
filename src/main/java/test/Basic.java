@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Basic {
+
     public static void main(String[] args) {
         Integer zero = Integer.valueOf(1);
         System.out.println(zero == 0);
@@ -39,7 +40,7 @@ public class Basic {
         System.out.println(secondWallAllocateResult);
         System.out.println(subCompletedQty);
         for (Map.Entry<Long, Integer> entry : secondWallAllocateResult.entrySet()) {
-            System.out.println(entry.getValue()==0);
+            System.out.println(entry.getValue() == 0);
         }
     }
 }

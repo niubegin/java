@@ -16,7 +16,7 @@ public class ScheduledExecutorServiceTest {
                     int[] s = new int[1];
                     System.out.println("OK");
                     System.out.println(s[1]);  // 数组越界
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
