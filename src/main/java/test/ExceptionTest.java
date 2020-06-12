@@ -33,11 +33,13 @@ public class ExceptionTest {
     }
 
     private static void throwFinallyTest() {
+        boolean flag = false;
         try {
             try {
                 throw null;
             } catch (Exception e) {
                 logger.error("e:", e);
+                flag = true;
                 throw new IllegalArgumentException("");
             }
         } catch (IllegalArgumentException ex) {
@@ -47,6 +49,10 @@ public class ExceptionTest {
         } catch (Exception e) {
             logger.warn("Exception", e);
         } finally {
+            if (flag) {
+                logger.info("提前返回");
+                return;
+            }
             //https://www.iteye.com/blog/shift-alt-ctrl-2156937
             throw new IllegalArgumentException("");
         }
