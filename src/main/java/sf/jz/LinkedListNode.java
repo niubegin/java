@@ -20,6 +20,10 @@ public class LinkedListNode {
 
     public static void travelPrint(LinkedListNode head) {
         LinkedListNode cur = head;
+        if (Objects.isNull(cur)) {
+            log.info("empty list");
+            return;
+        }
         while (Objects.nonNull(cur)) {
             log.info("{}", cur.getValue());
             cur = cur.getNext();
