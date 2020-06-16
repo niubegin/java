@@ -23,4 +23,30 @@ public class TreeNode {
             ", right=" + right +
             '}';
     }
+
+    public static TreeNode build(char[] arr) {
+        TreeNode root = createTree(arr, 0);
+        return root;
+    }
+
+    /**
+     * 根据数组创建树；规定：\0表示空节点
+     * @param arr
+     * @param index
+     * @return
+     */
+    private static TreeNode createTree(char[] arr, int index) {
+        if (index >= arr.length) {
+            return null;
+        }
+
+        if (arr[index] == '\0') {
+            return null;
+        }
+
+        TreeNode node = TreeNode.builder().value(arr[index]).build();
+        node.setLeft(createTree(arr, 2 * index + 1));
+        node.setRight(createTree(arr, 2 * index + 2));
+        return node;
+    }
 }
