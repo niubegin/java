@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class TreeNode {
 
+    private int level;
     private char value;
     private TreeNode left;
     private TreeNode right;
@@ -18,24 +19,22 @@ public class TreeNode {
     @Override
     public String toString() {
         return "TreeNode{" +
-            "value=" + value +
+            "level=" + level +
+            ", value=" + value +
             ", left=" + left +
             ", right=" + right +
             '}';
     }
 
     public static TreeNode build(char[] arr) {
-        TreeNode root = createTree(arr, 0);
+        TreeNode root = createTree(arr, 0, 0);
         return root;
     }
 
     /**
      * 根据数组创建树；规定：\0表示空节点
-     * @param arr
-     * @param index
-     * @return
      */
-    private static TreeNode createTree(char[] arr, int index) {
+    private static TreeNode createTree(char[] arr, int index, int level) {
         if (index >= arr.length) {
             return null;
         }
@@ -44,9 +43,9 @@ public class TreeNode {
             return null;
         }
 
-        TreeNode node = TreeNode.builder().value(arr[index]).build();
-        node.setLeft(createTree(arr, 2 * index + 1));
-        node.setRight(createTree(arr, 2 * index + 2));
+        TreeNode node = TreeNode.builder().value(arr[index]).level(level).build();
+        node.setLeft(createTree(arr, 2 * index + 1, level + 1));
+        node.setRight(createTree(arr, 2 * index + 2, level + 1));
         return node;
     }
 }
