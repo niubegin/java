@@ -3,6 +3,7 @@ package sf.jz;
 import java.util.ArrayDeque;
 import java.util.Objects;
 import java.util.Queue;
+import java.util.Stack;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,9 +17,11 @@ public class JZ32PrintFromTopToBottom {
         jz32PrintFromTopToBottom.print(rootA);
         jz32PrintFromTopToBottom.printInDifferentLines(rootA);
         jz32PrintFromTopToBottom.printInDifferentLines2(rootA);
+        jz32PrintFromTopToBottom.printInZigZag(rootA);
     }
 
     private Queue<TreeNode> queue = new ArrayDeque<>();
+    private Stack<TreeNode> stack = new Stack<>();
 
     /**
      * 从上到下打印二叉树：使用队列先进先出打印
@@ -102,6 +105,35 @@ public class JZ32PrintFromTopToBottom {
      * 之字形打印二叉树
      */
     private void printInZigZag(TreeNode node) {
-
+        if (Objects.isNull(node)) {
+            return;
+        }
+        queue.add(node);
+        boolean oddLevel = true;
+        while (queue.size() > 0 || stack.size() > 0) {
+            //栈为空时是奇数行
+            oddLevel = stack.size() == 0;
+            //取到当前节点，并将左右孩子加到队列
+            if (oddLevel) {
+                node = queue.poll();
+            } else {
+                node = stack.pop();
+            }
+            log.info("{}", node.getValue());
+            if (Objects.nonNull(node.getLeft())) {
+                if (oddLevel) {
+                    stack.push(node.getLeft());
+                } else {
+                    queue.add(node.getLeft());
+                }
+            }
+            if (Objects.nonNull(node.getRight())) {
+                if (oddLevel) {
+                    stack.push(node.getRight());
+                } else {
+                    queue.add(node.getRight());
+                }
+            }
+        }
     }
 }
