@@ -1,5 +1,6 @@
 package sf.jz;
 
+import java.util.Objects;
 import lombok.Builder;
 import lombok.Data;
 
@@ -22,8 +23,11 @@ public class TreeNode {
         return "TreeNode{" +
             "level=" + level +
             ", value=" + value +
-            ", left=" + left +
-            ", right=" + right +
+            ", intValue=" + intValue +
+            ", left=" + (Objects.nonNull(left) ? left.getValue() : "null") +
+            ", right=" + (Objects.nonNull(right) ? right.getValue() : "null") +
+            ", leftIntValue=" + (Objects.nonNull(left) ? left.getIntValue() : "null") +
+            ", rightIntValue=" + (Objects.nonNull(right) ? right.getIntValue() : "null") +
             '}';
     }
 
