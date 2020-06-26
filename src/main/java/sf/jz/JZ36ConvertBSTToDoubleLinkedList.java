@@ -27,24 +27,12 @@ public class JZ36ConvertBSTToDoubleLinkedList {
             return null;
         }
         TreeNode tmp;
-        //如果左子树只有一个节点，则进行单独设置，并根据是父节点的左子树还是右子树决定返回节点
-        if (Objects.nonNull(node.getLeft()) && Objects.isNull(node.getLeft().getLeft())) {
-            tmp = node.getLeft();
-            tmp.setRight(node);
-            //都是从左侧进入，则为头节点
+        //没有子节点返回自己
+        if (Objects.isNull(node.getLeft())) {
             if (allLeft) {
-                head = tmp;
+                head = node;
             }
-            tmp = node.getRight();
-            if (Objects.nonNull(tmp)) {
-                tmp.setLeft(node);
-            }
-            if (left) {
-                //右节点为空，返回node
-                return Objects.isNull(node.getRight()) ? node : node.getRight();
-            } else {
-                return node.getLeft();
-            }
+            return node;
         } else {
             //得到pre节点
             tmp = covert(node.getLeft(), allLeft && true, true);
