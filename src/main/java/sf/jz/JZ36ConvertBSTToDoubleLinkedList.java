@@ -26,23 +26,33 @@ public class JZ36ConvertBSTToDoubleLinkedList {
         if (Objects.isNull(node)) {
             return null;
         }
+
         TreeNode tmp;
         //没有子节点返回自己
         if (Objects.isNull(node.getLeft())) {
             if (allLeft) {
                 head = node;
             }
+
             return node;
         } else {
             //得到pre节点
             tmp = covert(node.getLeft(), allLeft && true, true);
-            tmp.setRight(node);
+            if (Objects.nonNull(tmp)) {
+                tmp.setRight(node);
+            }
+
             node.setLeft(tmp);
+
             //得到next节点
             tmp = covert(node.getRight(), allLeft && false, false);
-            node.setRight(tmp);
+            if (Objects.nonNull(tmp)) {
+                node.setRight(tmp);
+            }
+
             tmp.setLeft(node);
         }
+
         if (left) {
             return node.getRight();
         } else {
