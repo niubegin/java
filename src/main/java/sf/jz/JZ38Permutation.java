@@ -57,18 +57,24 @@ public class JZ38Permutation {
     private static void permutation(char[] chars, int pos) {
         if (pos == chars.length - 1) {
             log.info("{}", chars);
+            return;
         }
         for (int i = pos; i < chars.length; i++) {
             //首部字符和它后面的字符（包括自己）进行交换
-            char temp = chars[i];
-            chars[i] = chars[pos];
-            chars[pos] = temp;
+            char temp;
+            if (i > pos) {
+                temp = chars[i];
+                chars[i] = chars[pos];
+                chars[pos] = temp;
+            }
             //递归求后面的字符的排列
             permutation(chars, pos + 1);
             //由于前面交换了一下，所以chs的内容改变了，我们要还原回来
-            temp = chars[i];
-            chars[i] = chars[pos];
-            chars[pos] = temp;
+            if (i > pos) {
+                temp = chars[i];
+                chars[i] = chars[pos];
+                chars[pos] = temp;
+            }
         }
     }
 }
