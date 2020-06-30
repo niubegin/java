@@ -1,7 +1,9 @@
 package sf.jz;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +15,7 @@ public class JZ38Permutation {
         char[] chars = {'a', 'b', 'c'};
         permutate(chars, "");
         permutation("abc");
+        combination(chars);
     }
 
     private static void permutate(char[] chars, String pre) {
@@ -54,6 +57,9 @@ public class JZ38Permutation {
         permutation(str.toCharArray(), 0);
     }
 
+    /**
+     * 根据交换进行排列，降低了空间复杂度
+     */
     private static void permutation(char[] chars, int pos) {
         if (pos == chars.length - 1) {
             log.info("{}", chars);
@@ -76,5 +82,35 @@ public class JZ38Permutation {
                 chars[pos] = temp;
             }
         }
+    }
+
+    /**
+     * 求字符串内字符的所有组合
+     */
+    private static void combination(char[] chars) {
+        List<Character> com = new ArrayList<>();
+        for (int i = 1; i <= chars.length; i++) {
+            combination(chars, 0, i, com);
+        }
+    }
+
+    private static void combination(char[] chars, int pos, int len, List<Character> com) {
+        if (len == 0) {
+            log.info("组合：{}", com);
+            return;
+        }
+
+        //不能放到上一个if内去判断返回，因为只有len=0时才是组合成功才输出
+        if (pos >= chars.length) {
+            return;
+        }
+
+        com.add(chars[pos]);
+        //选取后面的len-1个字符
+        combination(chars, pos + 1, len - 1, com);
+        //还原选择
+        com.remove(com.size() - 1);
+        //不选择当前字符，在余下选择len个
+        combination(chars, pos + 1, len, com);
     }
 }
