@@ -105,8 +105,9 @@ public class JZ38Permutation {
             return;
         }
 
+        //选取当前字符
         com.add(chars[pos]);
-        //选取后面的len-1个字符
+        //在后面选取len-1个字符
         combination(chars, pos + 1, len - 1, com);
         //还原选择
         com.remove(com.size() - 1);
