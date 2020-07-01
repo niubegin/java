@@ -1,16 +1,16 @@
 package sf.jz;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class JZ38Permutation {
 
+    /**
+     * 要点：通过交换元素省空间；递归；
+     */
     public static void main(String[] args) {
         char[] chars = {'a', 'b', 'c'};
         permutate(chars, "");
