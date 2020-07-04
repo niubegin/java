@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ03FindOutDup {
 
+    /**
+     * 要点：交换
+     */
     public static void main(String[] args) {
         int[] array = {2, 3, 1, 2, 4};
         log.info("{}", array);

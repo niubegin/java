@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ10Fibonacci {
 
+    /**
+     * 要点：去重优化
+     */
     public static void main(String[] args) {
         log.info("{}", fn(10));
         log.info("{}", fn(3000));

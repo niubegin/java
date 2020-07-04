@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ10QuickSort {
 
+    /**
+     * 要点：交换，递归
+     */
     public static void main(String[] args) {
         int max = 10000;
         int[] arr = new int[max];

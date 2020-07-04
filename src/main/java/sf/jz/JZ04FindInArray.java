@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ04FindInArray {
 
+    /**
+     * 要点：二分
+     */
     public static void main(String[] args) {
         int[][] array = {{1, 2, 3, 4}, {6, 7, 8, 9}, {11, 12, 13, 14}};
         log.info("{}", find(10, array));

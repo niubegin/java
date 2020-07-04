@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ05ReplaceSpace {
 
+    /**
+     * 要点：倒序
+     */
     public static void main(String[] args) {
         char[] source = {'W', 'e', ' ', 'a', 'r', 'e', ' ', 'h', 'a', 'p', 'p', 'y', '.'};
         char[] target = replaceSpace(source);

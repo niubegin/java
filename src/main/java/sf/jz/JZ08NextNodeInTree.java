@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ08NextNodeInTree {
 
+    /**
+     * 要点：递归
+     */
     public static void main(String[] args) {
         JZ08NextNodeInTree jz08NextNodeInTree = new JZ08NextNodeInTree();
         TreeNode head = jz08NextNodeInTree.buildTree();

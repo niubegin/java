@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ11FindMinInRotateArray {
 
+    /**
+     * 要点：二分
+     */
     public static void main(String[] args) {
         int[] arr = {5, 6, 0, 1, 2, 3, 4};
         int[] arr1 = {1, 0, 1, 1, 1};

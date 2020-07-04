@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ34FindPathInTree {
 
+    /**
+     * 要点：递归
+     */
     public static void main(String[] args) {
         Integer[] arr = {10, 5, 12, 4, 7, null, null};
         TreeNode root = TreeNode.build(arr);

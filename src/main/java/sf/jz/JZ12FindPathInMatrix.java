@@ -48,7 +48,6 @@ public class JZ12FindPathInMatrix {
     private boolean find(char[][] martix, char[] target, Path path) {
         int x = martix.length;
         int y = martix[0].length;
-        int[] direct = {};
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 if (!findInPosition(martix, target, path, i, j)) {

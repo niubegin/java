@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ06ReversePrintLinkList {
 
+    /**
+     * 要点：反转
+     */
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.insert(Node.builder().value(1).next(null).build());

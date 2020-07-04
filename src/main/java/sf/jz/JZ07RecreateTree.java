@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ07RecreateTree {
 
+    /**
+     * 要点：递归
+     */
     public static void main(String[] args) {
         int[] first = {1, 2, 4, 7, 3, 5, 6, 8};
         int[] middle = {4, 7, 2, 1, 5, 3, 8, 6};
