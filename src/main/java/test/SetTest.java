@@ -19,6 +19,10 @@ public class SetTest {
         Set<Long> ids = ids1.stream().collect(Collectors.toSet());
         ids.addAll(ids2);
         log.info("{}", ids);
+        List<String> strs = new ArrayList<>();
+        strs.add("a");
+        strs.add("b");
+        log.info("{}", String.join(", ", strs));
     }
 
 }
