@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ40GetLeastNumbers {
 
+    /**
+     * 要点：快排分组函数；最大堆；
+     */
     public static void main(String[] args) {
         int[] nums = {3, 1, 2};
         partation(nums, 0, 2);
@@ -33,6 +36,9 @@ public class JZ40GetLeastNumbers {
         log.info("{}", maxHeap);
     }
 
+    /**
+     * 使用最大堆求最小k个数，特点：不修改源数组；使用额外空间少；可以处理海量数据
+     */
     private static Queue<Integer> get2(int[] nums, int k) {
         if (!check(nums, k)) {
             return null;
@@ -53,24 +59,9 @@ public class JZ40GetLeastNumbers {
         return maxHeap;
     }
 
-    private static boolean check(int[] nums, int k) {
-        if (k > nums.length) {
-            log.warn("k大于数组长度");
-            return false;
-        }
-
-        if (Objects.isNull(nums) || nums.length == 0) {
-            log.warn("数组为空");
-            return false;
-        }
-
-        if (k <= 0) {
-            log.warn("k非法{}", k);
-            return false;
-        }
-        return true;
-    }
-
+    /**
+     * 通过快排的分组函数，特点：修改原数组；不需要额外空间；
+     */
     private static void get(int[] nums, int k) {
         if (!check(nums, k)) {
             return;
@@ -91,6 +82,24 @@ public class JZ40GetLeastNumbers {
         for (int index = 0; index < k; index++) {
             log.info("{}", nums[index]);
         }
+    }
+
+    private static boolean check(int[] nums, int k) {
+        if (k > nums.length) {
+            log.warn("k大于数组长度");
+            return false;
+        }
+
+        if (Objects.isNull(nums) || nums.length == 0) {
+            log.warn("数组为空");
+            return false;
+        }
+
+        if (k <= 0) {
+            log.warn("k非法{}", k);
+            return false;
+        }
+        return true;
     }
 
     /**
