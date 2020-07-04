@@ -43,7 +43,7 @@ public class JZ40GetLeastNumbers {
         if (!check(nums, k)) {
             return null;
         }
-        Queue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+        Queue<Integer> maxHeap = new PriorityQueue<>(k, Comparator.reverseOrder());
         for (int num : nums) {
             if (maxHeap.size() < k) {
                 //填满k个数
