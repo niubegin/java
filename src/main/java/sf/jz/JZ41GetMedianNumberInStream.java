@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ41GetMedianNumberInStream {
 
+    /**
+     * 要点：大根堆；小根堆
+     */
     public static void main(String[] args) {
         offer(2);
         offer(2);
