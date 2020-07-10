@@ -11,6 +11,7 @@ public class JZ44GetDigitAtIndex {
         log.info("{}", get(11));
         log.info("{}", get(12));
         log.info("{}", get(13));
+        log.info("{}", get(1001));
     }
 
     /**
@@ -30,7 +31,7 @@ public class JZ44GetDigitAtIndex {
             //1位数有9个，0看作是0位的数字
             //2位数有90个，3位数有900个，……
             preSum = sum;
-            sum += Math.pow(10, digitNums - 1) * 9;
+            sum += Math.pow(10, digitNums - 1) * 9 * digitNums;
         }
         //正好相等，返回9
         if (sum == index) {
@@ -47,7 +48,8 @@ public class JZ44GetDigitAtIndex {
         int target = begin + (nums - 1) / digitNums;
         //求目标数字的位数
         int targetIndex = (nums - 1) % digitNums;
-        log.info("{},{},{},{},{},{}", index, begin, nums, target, digitNums, targetIndex);
+        log.info("index {}, begin {}, nums {}, target {}, digitNums {}, targetIndex {}",
+            index, begin, nums, target, digitNums, targetIndex);
         return String.valueOf(target).substring(targetIndex, targetIndex + 1);
     }
 }
