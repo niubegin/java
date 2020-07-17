@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JZ47GetMaxGiftValue {
 
     /**
-     * 要点：递归；避免递归容易出现的重复计算问题；
+     * 要点：递归；避免递归容易出现的重复计算问题；动态规划；动态规划算法的核心就是记住已经解决过的子问题的解；
      */
     public static void main(String[] args) {
         int[][] giftValueArr = {{1, 10, 3, 8}, {12, 2, 9, 6}, {5, 7, 4, 11}, {3, 7, 16, 5}};
@@ -17,6 +17,32 @@ public class JZ47GetMaxGiftValue {
         //字符串连接计算测试
         log.info("{}", 1 + 1 + "" + 2);
         log.info("{}", get(giftValueArr, 0, 0, 0, new HashMap<>()));
+        log.info("{}", get(giftValueArr));
+    }
+
+    /**
+     * 最优方法：使用循环，不用递归，使用cols长度的空间存储中间结果； 递归求解的过程中会重复求解许多的值，所以这个时候就应该使用动态规划的方式进行求解。
+     * 也就是说分析的过程如上，是从上到下递归地分析；而求解过程是从下到上循环地求解。
+     */
+    private static int get(int[][] gifValueArr) {
+        int rows = gifValueArr.length;
+        int cols = gifValueArr[0].length;
+        int[] maxValues = new int[cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int left = 0;
+                int up = 0;
+                if (i > 0) {
+                    up = maxValues[j];
+                }
+                if (j > 0) {
+                    left = maxValues[j - 1];
+                }
+                maxValues[j] = Math.max(up, left) + gifValueArr[i][j];
+            }
+        }
+
+        return maxValues[cols - 1];
     }
 
     /**
@@ -43,7 +69,7 @@ public class JZ47GetMaxGiftValue {
     }
 
     /**
-     * 使用空间优化，性能好的代码就复杂
+     * 使用空间优化，性能好的代码就复杂：递归，自顶向下的备忘录法
      */
     private static int get(int[][] giftValueArr, int rowIndex, int columnIndex, int sum, Map<String, Integer> sumMap) {
         if (rowIndex >= giftValueArr.length || columnIndex >= giftValueArr[0].length) {

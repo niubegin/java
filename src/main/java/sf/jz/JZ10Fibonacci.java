@@ -6,7 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 public class JZ10Fibonacci {
 
     /**
-     * 要点：去重优化
+     * 要点：去重优化；动态规划：动态规划算法的核心就是记住已经解决过的子问题的解；
+     * https://blog.csdn.net/u013309870/article/details/75193592
      */
     public static void main(String[] args) {
         log.info("{}", fn(10));
