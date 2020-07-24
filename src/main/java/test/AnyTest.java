@@ -13,6 +13,9 @@ public class AnyTest {
         Long shelfVolume = 2500000000L;
         compute(sumVolume, shelfVolume);
         compute(100800d, shelfVolume);
+        compute(100800d, shelfVolume);
+        compute(100800d, shelfVolume);
+        compute(100800d, shelfVolume);
     }
 
     private static void compute(Double sumVolume, Long shelfVolume) {
