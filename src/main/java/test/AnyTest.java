@@ -15,6 +15,7 @@ public class AnyTest {
         compute(100800d, shelfVolume);
         compute(100800d, shelfVolume);
         compute(100800d, shelfVolume);
+        compute(100800d, shelfVolume);
     }
 
     private static void compute(Double sumVolume, Long shelfVolume) {
