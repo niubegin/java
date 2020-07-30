@@ -15,7 +15,7 @@ public class StringTest {
         paddingZeroAtLeft(99);
         paddingZeroAtLeft(100);
         paddingZeroAtLeft(101);
-        Integer len = null;
+        Integer len = 1;
         log.info("{}", StringUtils.join("PRE", StringUtils.repeat('_', len)));
         log.info("{}", StringUtils.join("PRE", StringUtils.repeat('_', 4)));
         log.info("{}", getSerialNumFromContainerCode("aaaa999999999aaaa", "aaaa_________aaaa", 9));
@@ -24,7 +24,7 @@ public class StringTest {
         log.info("{}", getSerialNumFromContainerCode("1234", "____", 4));
         log.info("{}", getSerialNumFromContainerCode("abcd", "____", 4));
         log.info("{}", Integer.MAX_VALUE);
-        log.info("{}", Integer.valueOf("00001") + 1);
+        log.info("{}", Integer.parseInt("00001") + 1);
 //        orderStrings();
     }
 
