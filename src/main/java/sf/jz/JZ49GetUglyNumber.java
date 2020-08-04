@@ -7,6 +7,7 @@ public class JZ49GetUglyNumber {
 
     public static void main(String[] args) {
         log.info("{}", get(1400));
+        log.info("{}", get2(1400));
     }
 
     /**
@@ -29,7 +30,34 @@ public class JZ49GetUglyNumber {
     }
 
     /**
-     * 求出大于最后数字的最小乘积数
+     * 避免了重复计算
+     */
+    private static int get2(int index) {
+        int[] uglyNums = new int[index];
+        int lastIndex = 0, index2 = 0, index3 = 0, index5 = 0;
+        uglyNums[lastIndex] = 1;
+        while (true) {
+            if (lastIndex == index - 1) {
+                return uglyNums[lastIndex];
+            }
+
+            uglyNums[++lastIndex] = getMin(uglyNums[index2] * 2, uglyNums[index3] * 3, uglyNums[index5] * 5);
+            if (uglyNums[index2] * 2 == uglyNums[lastIndex]) {
+                index2++;
+            }
+
+            if (uglyNums[index3] * 3 == uglyNums[lastIndex]) {
+                index3++;
+            }
+
+            if (uglyNums[index5] * 5 == uglyNums[lastIndex]) {
+                index5++;
+            }
+        }
+    }
+
+    /**
+     * 求出大于最后数字的最小乘积数；存在重复计算的情况
      */
     private static int getTarget(int[] uglyNums, int lastIndex, int target) {
         for (int index = 0; index <= lastIndex; index++) {
@@ -40,6 +68,7 @@ public class JZ49GetUglyNumber {
 
         return 0;
     }
+
 
     /**
      * 求3个数中最小
