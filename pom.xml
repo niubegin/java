@@ -11,6 +11,7 @@
     <properties>
         <version.slf4j>1.7.12</version.slf4j>
         <version.log4j2>2.10.0</version.log4j2>
+        <version.fastjson>1.2.7</version.fastjson>
         <version.junit>4.12</version.junit>
         <version.commons.lang>3.7</version.commons.lang>
         <version.netty-all>[4.1.42,)</version.netty-all>
@@ -62,6 +63,11 @@
             <version>${version.log4j2}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${version.fastjson}</version>
+        </dependency>
         <!-- netty -->
         <dependency>
             <groupId>io.netty</groupId>
