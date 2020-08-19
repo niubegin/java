@@ -22,5 +22,6 @@ public class ToStringTest {
         dataObjectList.add(dataObject);
         childObject.setDataObjectList(dataObjectList);
         log.info("{}", childObject);
+        log.info("{}",new Object());
     }
 }
