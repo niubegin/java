@@ -25,7 +25,7 @@ public class JZ53GetMissingNum {
             } else {
                 if (arr[mid - 1] == mid - 1) {
                     // 检查前一个，相等的话就是本身
-                    return arr[mid];
+                    return mid;
                 } else {
                     // 前一个不等的话，继续二分查找
                     return get(arr, begin, mid - 1);
