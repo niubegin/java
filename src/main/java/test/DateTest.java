@@ -1,15 +1,20 @@
 package test;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class DateTest {
 
     /**
      * https://www.cnblogs.com/peida/archive/2013/05/31/3070790.html
      */
     public static void main(String[] args) {
+        log.info("{}",new Timestamp(1597829592373L).toString());
+        log.info("{}",new Timestamp(1597852800000L).toString());
         Long date = new Long(1575103860025L);//2019-11-30 16:51:00.0250
         Long ct = new Long(1575165347042L);//2019-12-01 09:55:47.0420
         Calendar inputDate = Calendar.getInstance();

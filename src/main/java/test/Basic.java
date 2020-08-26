@@ -2,10 +2,20 @@ package test;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Basic {
 
+    private static void testBoolean() {
+        String DATATRICKLE_COLUMN_ELIMINATE_WHEN_BLANK = "DATATRICKLE_COLUMN_ELIMINATE_WHEN_BLANK";
+        HashMap<String, Object> map = new HashMap<>();
+        //map.put(DATATRICKLE_COLUMN_ELIMINATE_WHEN_BLANK, "true");
+        log.info("{}", Boolean.valueOf(String.valueOf(map.get(DATATRICKLE_COLUMN_ELIMINATE_WHEN_BLANK))));
+    }
+
     public static void main(String[] args) {
+        testBoolean();
         Integer zero = Integer.valueOf(1);
         System.out.println(zero == 0);
         Map<Long, Integer> secondWallAllocateResult = new HashMap<>();
