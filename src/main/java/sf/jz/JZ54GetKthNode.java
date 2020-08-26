@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JZ54GetKthNode {
 
+    /**
+     * 要点：中序遍历
+     */
     public static void main(String[] args) {
         Integer[] nodes = {5, 3, 7, 2, 4, 6, 8};
         TreeNode tmp = TreeNode.build(nodes);
