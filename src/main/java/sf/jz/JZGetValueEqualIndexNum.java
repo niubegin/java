@@ -15,7 +15,7 @@ public class JZGetValueEqualIndexNum {
             return -1;
         }
 
-        int mid = (end - begin) / 2;
+        int mid = (end + begin) / 2;
         if (arr[mid] == mid) {
             // 相等，则找到返回本身
             return mid;
