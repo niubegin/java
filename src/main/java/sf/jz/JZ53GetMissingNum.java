@@ -22,7 +22,8 @@ public class JZ53GetMissingNum {
             return -1;
         }
 
-        int mid = (end - begin) / 2;
+        // 求中位数是加，而不是减
+        int mid = (end + begin) / 2;
         if (arr[mid] == mid) {
             // 相等时，从后半部分查找
             return get(arr, mid + 1, end);
