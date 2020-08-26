@@ -3,7 +3,7 @@ package sf.jz;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class JZGetValueEqualIndexNum {
+public class JZ53GetValueEqualIndexNum {
 
     public static void main(String[] args) {
         int[] arr = {-3, -2, 0, 3};
