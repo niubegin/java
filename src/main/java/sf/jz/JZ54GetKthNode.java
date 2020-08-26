@@ -19,6 +19,10 @@ public class JZ54GetKthNode {
     private static int count = 0;
 
     private static TreeNode get(TreeNode node, int kth) {
+        if (Objects.isNull(node)) {
+            return null;
+        }
+
         TreeNode target = null;
         if (Objects.nonNull(node.getLeft())) {
             target = get(node.getLeft(), kth);
