@@ -32,7 +32,8 @@ public class JZ53GetTimesOfNum {
     }
 
     private static int get(int[] arr, int begin, int end, int target) {
-        int mid = (end - begin) / 2;
+        // 求中位数是加，而不是减
+        int mid = (end + begin) / 2;
         if (arr[mid] > target) {
             if (mid - 1 < begin) {
 
@@ -66,10 +67,12 @@ public class JZ53GetTimesOfNum {
         if (begin > end) {
             return -1;
         }
-        int mid = (end - begin) / 2;
+
+        // 求中位数是加，而不是减
+        int mid = (end + begin) / 2;
         if (arr[mid] == target) {
             if (mid == 0) {
-                return -1;
+                return 0;
             } else {
                 if (arr[mid - 1] == target) {
                     // 在左侧查找
@@ -78,8 +81,11 @@ public class JZ53GetTimesOfNum {
                     return mid;
                 }
             }
-        } else {
+        } else if (arr[mid] > target) {
             // 在右侧查找
+            return getFirst(arr, mid + 1, end, target);
+        } else {
+            // 在左侧查找
             return getFirst(arr, mid + 1, end, target);
         }
     }
@@ -89,7 +95,8 @@ public class JZ53GetTimesOfNum {
             return -1;
         }
 
-        int mid = (end - begin) / 2;
+        // 求中位数是加，而不是减
+        int mid = (end + begin) / 2;
         if (arr[mid] == target) {
             if (mid == end) {
                 return mid;
