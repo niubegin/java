@@ -1,12 +1,22 @@
 package test;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AnyTest {
 
     public static void main(String[] args) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("dataWarpKey", null);
+        log.info("{}", String.valueOf(map.get("dataWarpKey")));
+        Object obj = null;
+        log.info("{}", "2".equals(null));
+        log.info("{}", "2".equals(obj));
+        obj = "2";
+        log.info("{}", "2".equals(obj));
         log.info("{}", 2 / 2);
         log.info("{}", "" + null);
         Double sumVolume = 2997d;
