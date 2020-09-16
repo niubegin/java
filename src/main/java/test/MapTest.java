@@ -1,13 +1,32 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.WeakHashMap;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MapTest {
 
     public static void main(String[] args) throws Exception {
-//        https://www.cnblogs.com/skywang12345/p/3311092.html
+//        testMemory();
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", Arrays.asList("1", "2", "xxxx"));
+        map.put("list3", "3");
+        List<String> list = (List<String>) map.get("list");
+        List<Integer> list2 = (List<Integer>) map.get("list");
+        List<Integer> list3 = (List<Integer>) map.get("list3");
+        log.info("{}", map.get("list"));
+        log.info("{}", list);
+        log.info("{}", list2);
+        log.info("{}", list3);
+    }
+
+    private static void testMemory() {
+        //        https://www.cnblogs.com/skywang12345/p/3311092.html
         //https://blog.csdn.net/yangzl2008/article/details/6980709
         //参数设置-Xmx64m -Xms64m
         weakHashMap不访问不释放();
