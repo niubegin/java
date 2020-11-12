@@ -1,5 +1,9 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -7,6 +11,15 @@ import org.apache.commons.lang3.StringUtils;
 public class StringTest {
 
     public static void main(String[] args) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("key", null);
+        list.add(map);
+        Object obj = list;
+        List<Map<String, String>> list2 = (List<Map<String, String>>) obj;
+        log.info("{}", list2.get(0).get("key"));
+
+
         //取值>=1
         paddingZeroAtLeft(0);
         paddingZeroAtLeft(1);

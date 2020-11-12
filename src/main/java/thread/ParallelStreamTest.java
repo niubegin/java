@@ -44,8 +44,8 @@ public class ParallelStreamTest {
         }
 
         if (targetList.size() < expectedSize) {
-            log.warn("expected size:{}, target container: {}, real size: {}", expectedSize,
-                targetList.getClass(), targetList.size());
+            log.warn("target container: {}, expected size:{}, real size: {}",
+                targetList.getClass(), expectedSize, targetList.size());
         }
     }
 
@@ -57,8 +57,8 @@ public class ParallelStreamTest {
 
         sourceMap.values().parallelStream().forEach(v -> targetMap.put(v, v));
         if (targetMap.size() < expectedSize) {
-            log.warn("expected size:{}, target container: {}, real size: {}", expectedSize,
-                targetMap.getClass(), targetMap.size());
+            log.warn("target container: {}, expected size:{}, real size: {}",
+                targetMap.getClass(), expectedSize, targetMap.size());
         }
     }
 }
