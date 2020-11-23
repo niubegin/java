@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 public class StringTest {
 
     public static void main(String[] args) {
+        log.info("{}", "01234".substring(0, 4));
         List<Map<String, Object>> list = new ArrayList<>();
         Map<String, Object> map = new HashMap<>();
         map.put("key", null);
@@ -18,7 +19,6 @@ public class StringTest {
         Object obj = list;
         List<Map<String, String>> list2 = (List<Map<String, String>>) obj;
         log.info("{}", list2.get(0).get("key"));
-
 
         //取值>=1
         paddingZeroAtLeft(0);
