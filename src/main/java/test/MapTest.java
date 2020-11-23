@@ -18,10 +18,10 @@ public class MapTest {
         map.put("list3", "3");
         List<String> list = (List<String>) map.get("list");
         List<Integer> list2 = (List<Integer>) map.get("list");
-        List<Integer> list3 = (List<Integer>) map.get("list3");
         log.info("{}", map.get("list"));
         log.info("{}", list);
         log.info("{}", list2);
+        List<Integer> list3 = (List<Integer>) map.get("list3");
         log.info("{}", list3);
     }
 
