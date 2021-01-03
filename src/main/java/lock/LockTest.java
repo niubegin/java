@@ -1,6 +1,7 @@
-package test;
+package lock;
 
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 import lombok.extern.slf4j.Slf4j;
@@ -8,21 +9,46 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LockTest {
 
+    // 需要保证多个线程使用的是同一个锁
+    private static ReentrantLock lock = new ReentrantLock();
+
     /**
      * https://tech.meituan.com/2018/11/15/java-lock.html
      */
     public static void main(String[] args) throws Exception {
-        retryLock();
+        test();
+//        retryLock();
+    }
+
+    private static void test() {
+        new Thread(() -> {
+            lock.lock();
+            try {
+                log.info("{} working", Thread.currentThread().getName());
+                TimeUnit.SECONDS.sleep(5);
+            } catch (Exception e) {
+            } finally {
+                lock.unlock();
+            }
+        }, "A").start();
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                log.info("{} working", Thread.currentThread().getName());
+            } catch (Exception e) {
+            } finally {
+                lock.unlock();
+            }
+        }, "B").start();
     }
 
     // ------------------------- 悲观锁的调用方式 -------------------------
     // synchronized
     public synchronized void testMethod() {
         // 操作同步资源
+        log.info("synchronized 加锁后，操作同步资源");
     }
-
-    // ReentrantLock
-    private ReentrantLock lock = new ReentrantLock(); // 需要保证多个线程使用的是同一个锁
 
     public void modifyPublicResources() {
         try {
@@ -44,7 +70,6 @@ public class LockTest {
     }
 
     private static void retryLock() throws Exception {
-        ReentrantLock lock = new ReentrantLock();
         try {
             int times = 0;
             //重试5次加索
