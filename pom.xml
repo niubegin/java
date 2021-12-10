@@ -10,7 +10,7 @@
 
   <properties>
     <version.slf4j>1.7.12</version.slf4j>
-    <version.log4j2>2.13.3</version.log4j2>
+    <version.log4j2>2.15.0</version.log4j2>
     <version.fastjson>1.2.25</version.fastjson>
     <version.junit>4.12</version.junit>
     <version.commons.lang>3.7</version.commons.lang>
